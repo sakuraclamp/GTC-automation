@@ -1,0 +1,12 @@
+﻿@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    else if ((int)Session["status"] != 0)
+    {
+        Response.Redirect("~/Login");
+    }
+
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}

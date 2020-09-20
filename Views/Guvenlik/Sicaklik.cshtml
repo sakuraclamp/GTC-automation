@@ -1,0 +1,82 @@
+﻿@model test.Models.personelsicaklik
+@{
+    if (Session["statusname"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+<title>Personel Girişi</title>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal" style="font-size:14px">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-5">
+                        <!-- general form elements -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                Sıcaklık Girişi
+                                <h3 class="card-title"></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form">
+                                <div class="card-body">
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Personel:</label>
+                                        <div class="col-sm-8">
+                                            @Html.DropDownList("kisi_id", (IEnumerable<SelectListItem>)ViewBag.kisi_id, new { @class = "form-control select2 form-control-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Sıcaklık:</label>
+                                        <div class="col-sm-5">
+                                            <input type="number" name="sicaklik" step="0.1" max="40.00" class="form-control form-control-sm" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Tarih:</label>
+                                        <div class="col-sm-5">
+                                            <input type="date" name="tarih" class="form-control form-control-sm" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label"></label>
+                                        <div class="col-sm-4">
+                                            <label style="color:blue">@Html.ViewBag.basarili</label>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="input-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </div>
+}
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+
+    })
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

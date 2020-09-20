@@ -1,0 +1,82 @@
+﻿@model IEnumerable<test.Models.personelsicaklik>
+@{
+    if (Session["statusname"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+<title>Birim Listesi</title>
+<div class="card" style="width: 45%">
+
+    <div class="card-body">
+        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                </div>
+                <div class="col-sm-12 col-md-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="dtBasicExample" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Ad Soyad</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Sıcaklık</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tarih</th>
+                                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">İşlem</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr role="row" class="even">
+                                    <td tabindex="0" class="sorting_1">
+                                        @Html.DisplayFor(modelItem => item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.personelgenel.ad) @Html.DisplayFor(modelItem => item.personelgenel.soyad)
+                                    </td>
+                                    @{
+                                        if (item.sicaklik == null)
+                                        {
+                                            <td> </td>
+                                        }
+                                        else
+                                        {
+                                            <td>@Html.DisplayFor(modelItem => item.sicaklik) <text>&#8451;</text></td>
+                                        }
+                                    }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tarih)
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" style="font-size:12px" href="@Url.Action("Sicakliksil",  new { id = item.id })">
+                                        <i class="fas fa-trash"> </i>
+                                        Sil
+                                    </a>
+                                </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            "order": [[0, "desc"]]
+        });
+    });
+</script>

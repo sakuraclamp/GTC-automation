@@ -1,0 +1,133 @@
+﻿@model IEnumerable<test.Models.personelgenel>
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<title>Personel listesi</title>
+<hr />
+
+<div class="card-body p-0" style="font-size:14px">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 7%">
+                    Kart ID
+                </th>
+
+                <th style="width: 9%">
+                    Adı
+                </th>
+                <th style="width: 10%">
+                    Soyadı
+                </th>
+                <th style="width: 10%">
+                    Profil Resmi
+                </th>
+                <th style="width: 10%">
+                    Bölüm
+                </th>
+                <th style="width: 11%">
+                    Görev
+                </th>
+                @{
+                    if ((string)Session["statusname"] == "Admin")
+                    {
+                        <th style="width: 25%">
+                            İşlem
+                        </th>
+                    }
+                    else
+                    {
+                        <th style="width: 20%">
+                            İşlem
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.isdisable == 0)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kart_no)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ad)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.soyad)
+                        </td>
+                        <td>
+                            @{
+                                if (item.image == null)
+                                {
+                                    <img src="~/Content/images/no-image-available.png" alt="User profile picture" style="max-height:55px;width:auto">
+                                }
+                                else
+                                {
+                                    <img src="~/Content/images/@item.image" alt="User profile picture" style="max-height:55px;width:auto">
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.personelbolum.blmadi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.personelgorev.gorevadi)
+                        </td>
+                        <td class="project-actions text-left" style="">
+                            <a class="btn btn-primary btn-sm" style="font-size:12px" href="@Url.Action("Detail", new { id = item.kart_no })">
+                                <i class="fas fa-folder">
+                                </i>
+                                Detay
+                            </a>
+                            <a class="btn btn-info btn-sm" style="font-size:12px" href="@Url.Action("Personeledit",  new { id = item.kart_no })">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Düzenle
+                            </a>
+                            <a class="btn btn-warning btn-sm" style="font-size:12px" href="@Url.Action("Disable", new { id = item.kart_no })">
+                                <i class="fas fa-hand-point-down"></i>
+                                İşten Çıkar
+                            </a>
+                            @{
+                                if ((string)Session["statusname"] == "Admin")
+                                {
+                                    <a class="btn btn-danger btn-sm" style="font-size:12px" href="@Url.Action("Delete", new { id = item.kart_no })">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Sil
+                                    </a>
+                                }
+                            }
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            "order": [[0, "desc"]]
+        });
+    });
+</script>

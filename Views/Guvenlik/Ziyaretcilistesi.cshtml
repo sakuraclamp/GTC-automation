@@ -1,0 +1,137 @@
+﻿@model IEnumerable<test.Models.misafir>
+@{
+    if (Session["statusname"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<title>Ziyaretçi Listesi</title>
+@using (Html.BeginForm())
+{
+    <input type="date" onchange="form.submit()" name="date" value="@ViewBag.now6" />
+}
+<hr />
+<div class="card-body p-0" style="font-size:14px">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th>
+                    Kullanıcı
+                </th>
+                <th>
+                    Ad Soyad
+                </th>
+                <th>
+                    TC
+                </th>
+                <th>
+                    Telefon
+                </th>
+                <th>
+                    Plaka
+                </th>
+                <th>
+                    Sıcakık
+                </th>
+                <th>
+                    Giriş saati
+                </th>
+                <th style="width:120px">
+                    Çıkış Saati
+                </th>
+                <th>
+                    Ziyaret Sebebi
+                </th>
+                <th>
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.isdisable == 0)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ad)  @Html.DisplayFor(modelItem => item.soyad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telefon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plaka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sicaklik)
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.girissaat).ToString("dd-MMM-yyyy HH:mm")
+                        </td>
+                        @{
+                            if (item.cikissaat == null)
+                            {
+                                <td>
+                                    @*<input type="datetime-local" name="cikissaat" class="form-control form-control-sm" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ','T')" />*@
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Convert.ToDateTime(item.cikissaat).ToString("dd-MMM-yyyy HH:mm")
+                                </td>
+                            }
+                        }
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sebep)
+                        </td>
+                        <td>
+
+                            <a class="btn btn-danger btn-sm" style="font-size:12px" href="@Url.Action("Ziyaretcisil",  new { id = item.id })">
+                                <i class="fas fa-trash"> </i>
+                                Sil
+                            </a>
+                            <a class="btn btn-info btn-sm" style="font-size:12px" href="@Url.Action("Getir",  new { id = item.id })">
+                                <i class="fas fa-level-up-alt"></i>
+                                Getir
+                            </a>
+                            @{
+                                if (item.cikissaat == null)
+                                {
+                                    <a class="btn btn-warning btn-sm" style="font-size:12px" href="@Url.Action("Ziyaretcicikis" , new { item.id})">
+                                        <i class="fas fa-step-forward"></i>
+                                        Çıkış Yap
+                                    </a>
+                                }
+                            }
+
+                        </td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+
+</div>
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json",
+                "pageLength": 25
+            }
+        });
+    });
+</script>

@@ -1,0 +1,73 @@
+﻿@model test.Models.login
+
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+
+    }
+    else if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<title>Kullanıcı Detayı</title>
+<h4>Kullanıcı Detay</h4>
+<hr />
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Detay</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                    
+                                        <div class="form-group">
+                                            <label>Kullanıcı Adı:</label>
+                                            <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.name)" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Yetki:</label>
+                                            <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.yetki.stat)" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Adı:</label>
+                                            <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.ad)" disabled="disabled">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Soyadı:</label>
+                                            <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.soyad)" disabled="disabled">
+                                        </div>
+                                       
+                                        <div class=" float-right">
+                                            <a href="~/AdminControl/Kisilistele" class="btn btn-app">
+                                                <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+                                            </a>
+                                        </div>
+                                    
+                                     <a href="@Url.Action("Edit", new { Model.id})" class="btn btn-app">
+                                            <i class="fas fa fa-edit"></i><b>Düzenle</b>
+                                        </a>
+               
+                                </div>
+                        </div>
+                          
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

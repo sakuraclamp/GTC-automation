@@ -1,0 +1,38 @@
+﻿@{
+    if (Session["statusname"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+<title>Anasayfa</title>
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>
+                    <font color="White">@ViewBag.count1 kişi</font>
+                </h3>
+                <p>Bugün Giriş Yapan Personel</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>
+                    <font color="White">@ViewBag.count2 kişi</font>
+                </h3>
+                <p>Bugün Giriş Yapan Ziyaretçi</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+        </div>
+    </div>
+</div>

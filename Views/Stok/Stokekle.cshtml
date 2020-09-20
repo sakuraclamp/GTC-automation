@@ -1,0 +1,95 @@
+﻿@model test.Models.stok
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+}
+<title>Stok Ekle</title>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="font-size:14px">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-blue">
+                            <div class="card-header">
+                                <h3 class="card-title"></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <!-- select -->
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label class="">Tedarikçi Firma Adı:</label>
+                                                @Html.DropDownList("tedarik_id", (IEnumerable<SelectListItem>)ViewBag.tedarik_id, new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label class="">Malzeme:</label>
+                                                @Html.DropDownList("malzeme_id", (IEnumerable<SelectListItem>)ViewBag.malzeme_id, new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label class="">Türü:</label>
+                                                @Html.DropDownList("tur_id", (IEnumerable<SelectListItem>)ViewBag.tur_id, new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label class="">Birimi:</label>
+                                                @Html.DropDownList("birim_id", (IEnumerable<SelectListItem>)ViewBag.birim_id, new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <label class="">Miktar:</label>
+                                                @Html.EditorFor(model => model.miktar, new { htmlAttributes = new { @class = "form-control select2" } })
+                                                @Html.ValidationMessageFor(model => model.miktar, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-4">
+                                                <label class="">Tarih:</label>
+                                                @Html.TextBoxFor(model => model.tarih, DateTime.Now.Date.ToString("{0:yyyy-MM-dd}"), new { type = "date", @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </div>
+}
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+</script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

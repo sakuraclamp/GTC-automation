@@ -1,0 +1,184 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4" style="font-size:14px">
+    <!-- Brand Logo -->
+    <div class="brand-link">
+        <img src="~/Content/Admin/dist/img/stock1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <a href="~/Admin"><span class="brand-text font-weight-light"><font size="4" style="color:yellow;"><b>Stok Yönetim</b></font></span></a>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                @{
+                    if (Session["status"] != null) {
+                        if ((int)Session["status"] == 0)
+                        {
+                        <img src="~/Content/Admin/dist/img/avatar04.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                        else if ((int)Session["status"] == 2)
+                        {
+                        <img src="~/Content/Admin/dist/img/user_1.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                        else
+                        {
+                        <img src="~/Content/Admin/dist/img/user_2.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                    }
+                    }
+            </div>
+            <div class="info">
+                <div class="d-block"><font color="white" size="4">Hoşgeldin &nbsp;</font><a href="~/Admin"><font color="orange" size="4">  @Session["username"]</font></a></div>
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+<nav class="mt-2">
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class
+with font-awesome or any other icon font library -->
+    <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa fa-cubes"></i>
+            <p>Stok
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="~/Stok/Stokekle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Stokekle" ? "active" : "")">
+                    <i class="far fa fa-cart-plus nav-icon"></i>
+                    <p>Stok Ekle</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a href="~/Stok/Stoklistele" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Stoklistele" ? "active" : "")">
+                    <i class="far fa fa-list-ul nav-icon"></i>
+                    <p>Stok Listesi</p>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+  
+    <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa fa-plus-square-o"></i>
+            <p>
+                Ekle
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            @{
+                if (Session["status"] != null)
+                {
+                    if ((int)Session["status"] == 0 || (int)Session["status"] == 2)
+                    {
+                    <li class="nav-item">
+                        <a href="~/Admin/Tedarikciekle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Tedarikciekle" ? "active" : "")">
+                            <i class="far fa fa-truck nav-icon"></i>
+                            <p>Tedarikçi Ekle</p>
+                        </a>
+                    </li>
+                    } } }
+            <li class="nav-item">
+                <a href="~/Admin/Tedarikcilistesi" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Tedarikcilistesi" ? "active" : "")">
+                    <i class="far fa fa-align-justify nav-icon"></i>
+                    <p>Tedarikçi Listele</p>
+                </a>
+            </li>
+            @{
+                if (Session["status"] != null)
+                {
+                    if ((int)Session["status"] == 0 || (int)Session["status"] == 2)
+                    {
+                    <li class="nav-item">
+                        <a href="~/Admin/Malzemeekle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Malzemeekle" ? "active" : "")">
+                            <i class="far fa fa-arrows nav-icon"></i>
+                            <p>Malzeme Ekle</p>
+                        </a>
+                    </li>
+                    } } }
+            <li class="nav-item">
+                <a href="~/Admin/Malzemelistesi" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Malzemelistesi" ? "active" : "")">
+                    <i class="far fa fa-align-left nav-icon"></i>
+                    <p>Malzeme Listele</p>
+                </a>
+            </li>
+            @{ if (Session["status"] != null)
+                {
+                    if ((int)Session["status"] == 0 || (int)Session["status"] == 2)
+                    {
+                    <li class="nav-item">
+                        <a href="~/Admin/Turekle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Turekle" ? "active" : "")">
+                            <i class="far fa fa-arrows nav-icon"></i>
+                            <p>Tür Ekle</p>
+                        </a>
+                    </li>
+                    } } }
+            <li class="nav-item">
+                <a href="~/Admin/Turlistesi" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Turlistesi" ? "active" : "")">
+                    <i class="far fa fa-align-left nav-icon"></i>
+                    <p>Tür Listele</p>
+                </a>
+            </li>
+            @{ if (Session["status"] != null)
+                {
+                    if ((int)Session["status"] == 0 || (int)Session["status"] == 2)
+                    {
+                    <li class="nav-item">
+                        <a href="~/Admin/Birimekle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Birimekle" ? "active" : "")">
+                            <i class="far fa  fa-bolt  nav-icon"></i>
+                            <p>Birim Ekle</p>
+                        </a>
+                    </li>
+                    } } }
+                    <li class="nav-item">
+                        <a href="~/Admin/Birimlistesi" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Birimlistesi" ? "active" : "")">
+                            <i class="far fa fa-align-left nav-icon"></i>
+                            <p>Birim Listele</p>
+                        </a>
+                    </li>
+                </ul>
+    </li> 
+    <li class="nav-item has-treeview menu-open">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa fa-user"></i>
+            <p>
+                Kullanıcı
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+
+        @{
+                if ((string)Session["statusname"] == "Admin" || (string)Session["statusname"] == "Master")
+                {
+                <li class="nav-item">
+                    <a href="@Url.Action("Kisilistele", "Admin")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Kisilistele" ? "active" : "")" >
+                        <i class="far fa fa-list-alt nav-icon "></i>
+                        <p>Kullanıcı Listele</p>
+                    </a>
+                </li>
+                    }
+                } 
+        <li class="nav-item">
+            <a href="@Url.Action("profil", "Stok",new {name=Session["username"]})" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "profil" ? "active" : "")" >
+                <i class="far fa fa-cogs nav-icon"></i>
+                <p>Kullanıcı Ayarı</p>
+            </a>
+        </li>
+        </ul>
+    </li>
+    <li class="nav-item">
+        <a href="@Url.Action("Logout", "Login")" class="nav-link">
+            <i class="far fa fa-sign-out nav-icon"></i>
+            <p><font color="red"><b>Çıkış</b> </font></p>
+        </a>
+    </li>
+</ul>
+</nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

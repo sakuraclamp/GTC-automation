@@ -1,0 +1,105 @@
+﻿@model test.Models.login
+
+@{
+    if (Session["UserId"] == null)
+    {
+
+        Response.Redirect("~/Login");
+
+    }
+    else if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+    ViewBag.Title = "Düzenle";
+      Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+    <title>Kullanıcı Düzenle</title>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Düzenle</h4>
+        <hr />
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-cyan">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="">Kullanıcı Adı:</label>
+                                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.pass)
+                            <div class="">
+                                <!-- select -->
+                                <div class="form-group">
+                                    <label>Yetki:</label>
+                                    @Html.DropDownList("yetki", null, new { @class = "form-control select2" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="">Adı:</label>
+                                    @Html.EditorFor(model => model.ad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="">
+                                    <label class="">Soyadı:</label>
+                                    @Html.EditorFor(model => model.soyad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.soyad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class=" float-right">
+                                <a href="~/AdminControl/Kisilistele" class="btn btn-app">
+                                    <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+                                </a>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 ">
+                                    <input type="submit" value="Kaydet" class="btn btn-info " />
+                                </div>
+                            </div>
+
+                        </div>
+                        <a href="@Url.Action("Edit1", new { Model.id})" class="btn btn-app">
+                            <i class="fas fa fa-exchange"></i><b style="font-size:14px" >Şifre Değiştirme işlemi</b>
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+    </div>
+
+}
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

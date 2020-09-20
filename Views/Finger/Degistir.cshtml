@@ -1,0 +1,11 @@
+﻿@model IEnumerable<test.Models.giriscikis>
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}

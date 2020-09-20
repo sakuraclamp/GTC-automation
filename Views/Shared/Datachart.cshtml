@@ -1,0 +1,32 @@
+﻿@model IEnumerable<test.Models.malzemelist>
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"><b>Malzeme Listesi</b></h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="dtBasicExample" class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <th style="width:50%">Malzeme Adı</th>
+                        <th style="width:50%">Toplam Miktar</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.list)
+                    {
+                        <tr>
+                            <td>@item.malzeme</td>
+                            <td>@item.toplam  @item.birim</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>

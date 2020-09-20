@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Content/Admin/plugins/fontawesome-free/css/all.min.css">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/plugins/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/Content/Admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link href="~/Content/Admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css" rel="stylesheet" />
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/Admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        @Html.Partial("_Header2")
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        @Html.Partial("_Sidebar2")
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"></li>
+
+                            </ol>
+                        </div><!-- /.col -->
+                    </div>@RenderBody()
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        @Html.Partial("_Footer")
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/Content/Admin/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/Admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Content/Admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="~/Content/Admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/Content/Admin/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/Admin/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Content/Admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="~/Content/Admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="~/Content/Admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/Admin/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Content/Admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/Admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Content/Admin/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/Admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Content/Admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Content/Admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Content/Admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/Admin/dist/js/adminlte.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/Content/Admin/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/Admin/dist/js/demo.js"></script>
+    <script src="~/Content/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/Admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/Admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <div class="container body-content">
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,1670 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="gtc_stokModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adminkontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="miktar" Type="float" />
+          <Property Name="stok_id" Type="int" Nullable="false" />
+          <Property Name="giren" Type="int" />
+          <Property Name="kul_id" Type="int" />
+          <Property Name="kayittarih" Type="datetime" />
+          <Property Name="tur" Type="int" />
+          <Property Name="tedarik" Type="int" />
+          <Property Name="birim" Type="int" />
+          <Property Name="malzeme" Type="int" />
+          <Property Name="harcanan" Type="float" />
+          <Property Name="girilen" Type="float" />
+        </EntityType>
+        <EntityType Name="birim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="birim" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="cinsiyet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cinsiyet_adi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="giriscikis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kisi_id" Type="int" />
+          <Property Name="value" Type="int" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="zaman" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="guvenlikkontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kul_id" Type="int" />
+          <Property Name="kayittarih" Type="datetime" />
+          <Property Name="personel_id" Type="int" />
+          <Property Name="misafir_id" Type="int" />
+          <Property Name="durum" Type="int" />
+        </EntityType>
+        <EntityType Name="kangrup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kan" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="VCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="malzemelist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="malzeme" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="medenihali">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="medeni_hali" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="misafir">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="tc" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="girissaat" Type="datetime" />
+          <Property Name="cikissaat" Type="datetime" />
+          <Property Name="sebep" Type="nvarchar" MaxLength="50" />
+          <Property Name="sicaklik" Type="float" />
+          <Property Name="plaka" Type="nvarchar" MaxLength="50" />
+          <Property Name="isdisable" Type="int" />
+        </EntityType>
+        <EntityType Name="personel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kisi_id" Type="int" />
+          <Property Name="plaka" Type="nvarchar" MaxLength="50" />
+          <Property Name="giris" Type="datetime" />
+          <Property Name="cikis" Type="datetime" />
+          <Property Name="sebep" Type="nvarchar" MaxLength="50" />
+          <Property Name="isdisable" Type="int" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="giris_id" Type="int" />
+          <Property Name="cikis_id" Type="int" />
+        </EntityType>
+        <EntityType Name="personelbolum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="blmadi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personelegitim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="egitimadi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personelgenel">
+          <Key>
+            <PropertyRef Name="kart_no" />
+          </Key>
+          <Property Name="kart_no" Type="int" Nullable="false" />
+          <Property Name="ad" Type="varchar" MaxLength="50" />
+          <Property Name="soyad" Type="varchar" MaxLength="50" />
+          <Property Name="grup_id" Type="int" />
+          <Property Name="bolum_id" Type="int" />
+          <Property Name="gorev_id" Type="int" />
+          <Property Name="egitim_id" Type="int" />
+          <Property Name="bankahesapno" Type="varchar" MaxLength="50" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+          <Property Name="baslamatarihi" Type="datetime" />
+          <Property Name="tc" Type="nvarchar" MaxLength="50" />
+          <Property Name="resmibaslamatarihi" Type="datetime" />
+          <Property Name="isdisable" Type="int" />
+          <Property Name="anaadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="babaadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="serino" Type="nvarchar" MaxLength="50" />
+          <Property Name="dogumtarih" Type="datetime" />
+          <Property Name="medenihali_id" Type="smallint" />
+          <Property Name="kangrubu_id" Type="smallint" />
+          <Property Name="cinsiyet_id" Type="smallint" />
+          <Property Name="elbisebeden" Type="int" />
+          <Property Name="cikistarihi" Type="datetime" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personelgorev">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gorevadi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personelgrup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="grupadi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="personelsicaklik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kisi_id" Type="int" />
+          <Property Name="sicaklik" Type="float" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="kul_id" Type="int" />
+          <Property Name="malzeme_id" Type="int" />
+          <Property Name="tur_id" Type="int" />
+          <Property Name="tedarik_id" Type="int" />
+          <Property Name="birim_id" Type="int" />
+          <Property Name="miktar" Type="float" />
+          <Property Name="isdisable" Type="int" />
+          <Property Name="kalanmiktar" Type="float" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tedarikci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firma" Type="varchar" MaxLength="50" />
+          <Property Name="adres" Type="varchar(max)" />
+          <Property Name="telefon" Type="varchar" MaxLength="50" />
+          <Property Name="ilgilisi" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stat" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_adminkontrol_birim">
+          <End Role="birim" Type="Self.birim" Multiplicity="0..1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="birim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_login">
+          <End Role="login" Type="Self.login" Multiplicity="0..1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_malzemelist">
+          <End Role="malzemelist" Type="Self.malzemelist" Multiplicity="0..1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="malzemelist">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="malzeme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_stok">
+          <End Role="stok" Type="Self.stok" Multiplicity="1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stok">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="stok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_tedarikci">
+          <End Role="tedarikci" Type="Self.tedarikci" Multiplicity="0..1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="tedarik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="adminkontrol" Type="Self.adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_giriscikis_personelgenel">
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="0..1" />
+          <End Role="giriscikis" Type="Self.giriscikis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="giriscikis">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_login">
+          <End Role="login" Type="Self.login" Multiplicity="0..1" />
+          <End Role="guvenlikkontrol" Type="Self.guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_misafir">
+          <End Role="misafir" Type="Self.misafir" Multiplicity="0..1" />
+          <End Role="guvenlikkontrol" Type="Self.guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="misafir">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="misafir_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_personel">
+          <End Role="personel" Type="Self.personel" Multiplicity="0..1" />
+          <End Role="guvenlikkontrol" Type="Self.guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="personel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_status">
+          <End Role="yetki" Type="Self.yetki" Multiplicity="0..1" />
+          <End Role="login" Type="Self.login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="login">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personel_personelgenel">
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="0..1" />
+          <End Role="personel" Type="Self.personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="personel">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_cinsiyet">
+          <End Role="cinsiyet" Type="Self.cinsiyet" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinsiyet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="cinsiyet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_kangrup">
+          <End Role="kangrup" Type="Self.kangrup" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kangrup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="kangrubu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_medenihali">
+          <End Role="medenihali" Type="Self.medenihali" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medenihali">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="medenihali_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelbolum1">
+          <End Role="personelbolum" Type="Self.personelbolum" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelbolum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="bolum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelegitim1">
+          <End Role="personelegitim" Type="Self.personelegitim" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelegitim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="egitim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelgorev1">
+          <End Role="personelgorev" Type="Self.personelgorev" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgorev">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="gorev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelgrup1">
+          <End Role="personelgrup" Type="Self.personelgrup" Multiplicity="0..1" />
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgrup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="grup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelsicaklik_personelgenel">
+          <End Role="personelgenel" Type="Self.personelgenel" Multiplicity="0..1" />
+          <End Role="personelsicaklik" Type="Self.personelsicaklik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="personelsicaklik">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_birim">
+          <End Role="birim" Type="Self.birim" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_login">
+          <End Role="login" Type="Self.login" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_malzemelist">
+          <End Role="malzemelist" Type="Self.malzemelist" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="malzemelist">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="malzeme_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_tedarikci">
+          <End Role="tedarikci" Type="Self.tedarikci" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="tedarik_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_tur">
+          <End Role="tur" Type="Self.tur" Multiplicity="0..1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="tur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="stok_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="gtc_stokModelStoreContainer">
+          <EntitySet Name="adminkontrol" EntityType="Self.adminkontrol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="birim" EntityType="Self.birim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cinsiyet" EntityType="Self.cinsiyet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="giriscikis" EntityType="Self.giriscikis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="guvenlikkontrol" EntityType="Self.guvenlikkontrol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kangrup" EntityType="Self.kangrup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="malzemelist" EntityType="Self.malzemelist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="medenihali" EntityType="Self.medenihali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="misafir" EntityType="Self.misafir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personel" EntityType="Self.personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelbolum" EntityType="Self.personelbolum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelegitim" EntityType="Self.personelegitim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelgenel" EntityType="Self.personelgenel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelgorev" EntityType="Self.personelgorev" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelgrup" EntityType="Self.personelgrup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personelsicaklik" EntityType="Self.personelsicaklik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stok" EntityType="Self.stok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tedarikci" EntityType="Self.tedarikci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tur" EntityType="Self.tur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yetki" EntityType="Self.yetki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_adminkontrol_birim" Association="Self.FK_adminkontrol_birim">
+            <End Role="birim" EntitySet="birim" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_login" Association="Self.FK_adminkontrol_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_malzemelist" Association="Self.FK_adminkontrol_malzemelist">
+            <End Role="malzemelist" EntitySet="malzemelist" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_stok" Association="Self.FK_adminkontrol_stok">
+            <End Role="stok" EntitySet="stok" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_tedarikci" Association="Self.FK_adminkontrol_tedarikci">
+            <End Role="tedarikci" EntitySet="tedarikci" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_tur" Association="Self.FK_adminkontrol_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_giriscikis_personelgenel" Association="Self.FK_giriscikis_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="giriscikis" EntitySet="giriscikis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_login" Association="Self.FK_guvenlikkontrol_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_misafir" Association="Self.FK_guvenlikkontrol_misafir">
+            <End Role="misafir" EntitySet="misafir" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_personel" Association="Self.FK_guvenlikkontrol_personel">
+            <End Role="personel" EntitySet="personel" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_status" Association="Self.FK_login_status">
+            <End Role="yetki" EntitySet="yetki" />
+            <End Role="login" EntitySet="login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personel_personelgenel" Association="Self.FK_personel_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="personel" EntitySet="personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_cinsiyet" Association="Self.FK_personelgenel_cinsiyet">
+            <End Role="cinsiyet" EntitySet="cinsiyet" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_kangrup" Association="Self.FK_personelgenel_kangrup">
+            <End Role="kangrup" EntitySet="kangrup" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_medenihali" Association="Self.FK_personelgenel_medenihali">
+            <End Role="medenihali" EntitySet="medenihali" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelbolum1" Association="Self.FK_personelgenel_personelbolum1">
+            <End Role="personelbolum" EntitySet="personelbolum" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelegitim1" Association="Self.FK_personelgenel_personelegitim1">
+            <End Role="personelegitim" EntitySet="personelegitim" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelgorev1" Association="Self.FK_personelgenel_personelgorev1">
+            <End Role="personelgorev" EntitySet="personelgorev" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelgrup1" Association="Self.FK_personelgenel_personelgrup1">
+            <End Role="personelgrup" EntitySet="personelgrup" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelsicaklik_personelgenel" Association="Self.FK_personelsicaklik_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="personelsicaklik" EntitySet="personelsicaklik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_birim" Association="Self.FK_stok_birim">
+            <End Role="birim" EntitySet="birim" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_login" Association="Self.FK_stok_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_malzemelist" Association="Self.FK_stok_malzemelist">
+            <End Role="malzemelist" EntitySet="malzemelist" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_tedarikci" Association="Self.FK_stok_tedarikci">
+            <End Role="tedarikci" EntitySet="tedarikci" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_tur" Association="Self.FK_stok_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gtc_stokModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="gtc_stokEntities2" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="stok_list" ReturnType="Collection(gtc_stokModel.stok_list_Result)" />
+          <EntitySet Name="adminkontrol" EntityType="gtc_stokModel.adminkontrol" />
+          <EntitySet Name="birim" EntityType="gtc_stokModel.birim" />
+          <EntitySet Name="cinsiyet" EntityType="gtc_stokModel.cinsiyet" />
+          <EntitySet Name="giriscikis" EntityType="gtc_stokModel.giriscikis" />
+          <EntitySet Name="guvenlikkontrol" EntityType="gtc_stokModel.guvenlikkontrol" />
+          <EntitySet Name="kangrup" EntityType="gtc_stokModel.kangrup" />
+          <EntitySet Name="login" EntityType="gtc_stokModel.login" />
+          <EntitySet Name="malzemelist" EntityType="gtc_stokModel.malzemelist" />
+          <EntitySet Name="medenihali" EntityType="gtc_stokModel.medenihali" />
+          <EntitySet Name="misafir" EntityType="gtc_stokModel.misafir" />
+          <EntitySet Name="personel" EntityType="gtc_stokModel.personel" />
+          <EntitySet Name="personelbolum" EntityType="gtc_stokModel.personelbolum" />
+          <EntitySet Name="personelegitim" EntityType="gtc_stokModel.personelegitim" />
+          <EntitySet Name="personelgenel" EntityType="gtc_stokModel.personelgenel" />
+          <EntitySet Name="personelgorev" EntityType="gtc_stokModel.personelgorev" />
+          <EntitySet Name="personelgrup" EntityType="gtc_stokModel.personelgrup" />
+          <EntitySet Name="personelsicaklik" EntityType="gtc_stokModel.personelsicaklik" />
+          <EntitySet Name="stok" EntityType="gtc_stokModel.stok" />
+          <EntitySet Name="sysdiagrams" EntityType="gtc_stokModel.sysdiagrams" />
+          <EntitySet Name="tedarikci" EntityType="gtc_stokModel.tedarikci" />
+          <EntitySet Name="tur" EntityType="gtc_stokModel.tur" />
+          <EntitySet Name="yetki" EntityType="gtc_stokModel.yetki" />
+          <AssociationSet Name="FK_adminkontrol_birim" Association="gtc_stokModel.FK_adminkontrol_birim">
+            <End Role="birim" EntitySet="birim" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_login" Association="gtc_stokModel.FK_adminkontrol_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_malzemelist" Association="gtc_stokModel.FK_adminkontrol_malzemelist">
+            <End Role="malzemelist" EntitySet="malzemelist" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_stok" Association="gtc_stokModel.FK_adminkontrol_stok">
+            <End Role="stok" EntitySet="stok" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_tedarikci" Association="gtc_stokModel.FK_adminkontrol_tedarikci">
+            <End Role="tedarikci" EntitySet="tedarikci" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adminkontrol_tur" Association="gtc_stokModel.FK_adminkontrol_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="adminkontrol" EntitySet="adminkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_birim" Association="gtc_stokModel.FK_stok_birim">
+            <End Role="birim" EntitySet="birim" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_cinsiyet" Association="gtc_stokModel.FK_personelgenel_cinsiyet">
+            <End Role="cinsiyet" EntitySet="cinsiyet" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_giriscikis_personelgenel" Association="gtc_stokModel.FK_giriscikis_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="giriscikis" EntitySet="giriscikis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_login" Association="gtc_stokModel.FK_guvenlikkontrol_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_misafir" Association="gtc_stokModel.FK_guvenlikkontrol_misafir">
+            <End Role="misafir" EntitySet="misafir" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_guvenlikkontrol_personel" Association="gtc_stokModel.FK_guvenlikkontrol_personel">
+            <End Role="personel" EntitySet="personel" />
+            <End Role="guvenlikkontrol" EntitySet="guvenlikkontrol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_kangrup" Association="gtc_stokModel.FK_personelgenel_kangrup">
+            <End Role="kangrup" EntitySet="kangrup" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_status" Association="gtc_stokModel.FK_login_status">
+            <End Role="yetki" EntitySet="yetki" />
+            <End Role="login" EntitySet="login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_login" Association="gtc_stokModel.FK_stok_login">
+            <End Role="login" EntitySet="login" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_malzemelist" Association="gtc_stokModel.FK_stok_malzemelist">
+            <End Role="malzemelist" EntitySet="malzemelist" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_medenihali" Association="gtc_stokModel.FK_personelgenel_medenihali">
+            <End Role="medenihali" EntitySet="medenihali" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personel_personelgenel" Association="gtc_stokModel.FK_personel_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="personel" EntitySet="personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelbolum1" Association="gtc_stokModel.FK_personelgenel_personelbolum1">
+            <End Role="personelbolum" EntitySet="personelbolum" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelegitim1" Association="gtc_stokModel.FK_personelgenel_personelegitim1">
+            <End Role="personelegitim" EntitySet="personelegitim" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelgorev1" Association="gtc_stokModel.FK_personelgenel_personelgorev1">
+            <End Role="personelgorev" EntitySet="personelgorev" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelgenel_personelgrup1" Association="gtc_stokModel.FK_personelgenel_personelgrup1">
+            <End Role="personelgrup" EntitySet="personelgrup" />
+            <End Role="personelgenel" EntitySet="personelgenel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personelsicaklik_personelgenel" Association="gtc_stokModel.FK_personelsicaklik_personelgenel">
+            <End Role="personelgenel" EntitySet="personelgenel" />
+            <End Role="personelsicaklik" EntitySet="personelsicaklik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_tedarikci" Association="gtc_stokModel.FK_stok_tedarikci">
+            <End Role="tedarikci" EntitySet="tedarikci" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_tur" Association="gtc_stokModel.FK_stok_tur">
+            <End Role="tur" EntitySet="tur" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="stok_list_Result">
+          <Property Type="String" Name="birim" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="malzeme" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="toplam" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="adminkontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="miktar" Type="Double" />
+          <Property Name="stok_id" Type="Int32" Nullable="false" />
+          <Property Name="giren" Type="Int32" />
+          <Property Name="kul_id" Type="Int32" />
+          <Property Name="kayittarih" Type="DateTime" Precision="3" />
+          <Property Name="tur" Type="Int32" />
+          <Property Name="tedarik" Type="Int32" />
+          <Property Name="birim" Type="Int32" />
+          <Property Name="malzeme" Type="Int32" />
+          <Property Name="harcanan" Type="Double" />
+          <Property Name="girilen" Type="Double" />
+          <NavigationProperty Name="birim1" Relationship="gtc_stokModel.FK_adminkontrol_birim" FromRole="adminkontrol" ToRole="birim" />
+          <NavigationProperty Name="login" Relationship="gtc_stokModel.FK_adminkontrol_login" FromRole="adminkontrol" ToRole="login" />
+          <NavigationProperty Name="malzemelist" Relationship="gtc_stokModel.FK_adminkontrol_malzemelist" FromRole="adminkontrol" ToRole="malzemelist" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_adminkontrol_stok" FromRole="adminkontrol" ToRole="stok" />
+          <NavigationProperty Name="tedarikci" Relationship="gtc_stokModel.FK_adminkontrol_tedarikci" FromRole="adminkontrol" ToRole="tedarikci" />
+          <NavigationProperty Name="tur1" Relationship="gtc_stokModel.FK_adminkontrol_tur" FromRole="adminkontrol" ToRole="tur" />
+        </EntityType>
+        <EntityType Name="birim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="birim1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_birim" FromRole="birim" ToRole="adminkontrol" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_stok_birim" FromRole="birim" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="cinsiyet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cinsiyet_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_cinsiyet" FromRole="cinsiyet" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="giriscikis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kisi_id" Type="Int32" />
+          <Property Name="value" Type="Int32" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="zaman" Type="Time" Precision="0" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_giriscikis_personelgenel" FromRole="giriscikis" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="guvenlikkontrol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kul_id" Type="Int32" />
+          <Property Name="kayittarih" Type="DateTime" Precision="3" />
+          <Property Name="personel_id" Type="Int32" />
+          <Property Name="misafir_id" Type="Int32" />
+          <Property Name="durum" Type="Int32" />
+          <NavigationProperty Name="login" Relationship="gtc_stokModel.FK_guvenlikkontrol_login" FromRole="guvenlikkontrol" ToRole="login" />
+          <NavigationProperty Name="misafir" Relationship="gtc_stokModel.FK_guvenlikkontrol_misafir" FromRole="guvenlikkontrol" ToRole="misafir" />
+          <NavigationProperty Name="personel" Relationship="gtc_stokModel.FK_guvenlikkontrol_personel" FromRole="guvenlikkontrol" ToRole="personel" />
+        </EntityType>
+        <EntityType Name="kangrup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_kangrup" FromRole="kangrup" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_login" FromRole="login" ToRole="adminkontrol" />
+          <NavigationProperty Name="guvenlikkontrol" Relationship="gtc_stokModel.FK_guvenlikkontrol_login" FromRole="login" ToRole="guvenlikkontrol" />
+          <NavigationProperty Name="yetki" Relationship="gtc_stokModel.FK_login_status" FromRole="login" ToRole="yetki" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_stok_login" FromRole="login" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="malzemelist">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="malzeme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_malzemelist" FromRole="malzemelist" ToRole="adminkontrol" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_stok_malzemelist" FromRole="malzemelist" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="medenihali">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="medeni_hali" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_medenihali" FromRole="medenihali" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="misafir">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="girissaat" Type="DateTime" Precision="3" />
+          <Property Name="cikissaat" Type="DateTime" Precision="3" />
+          <Property Name="sebep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sicaklik" Type="Double" />
+          <Property Name="plaka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isdisable" Type="Int32" />
+          <NavigationProperty Name="guvenlikkontrol" Relationship="gtc_stokModel.FK_guvenlikkontrol_misafir" FromRole="misafir" ToRole="guvenlikkontrol" />
+        </EntityType>
+        <EntityType Name="personel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kisi_id" Type="Int32" />
+          <Property Name="plaka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giris" Type="DateTime" Precision="3" />
+          <Property Name="cikis" Type="DateTime" Precision="3" />
+          <Property Name="sebep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="giris_id" Type="Int32" />
+          <Property Name="cikis_id" Type="Int32" />
+          <NavigationProperty Name="guvenlikkontrol" Relationship="gtc_stokModel.FK_guvenlikkontrol_personel" FromRole="personel" ToRole="guvenlikkontrol" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personel_personelgenel" FromRole="personel" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="personelbolum">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="blmadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_personelbolum1" FromRole="personelbolum" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="personelegitim">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="egitimadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_personelegitim1" FromRole="personelegitim" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="personelgenel">
+          <Key>
+            <PropertyRef Name="kart_no" />
+          </Key>
+          <Property Name="kart_no" Type="Int32" Nullable="false" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grup_id" Type="Int32" />
+          <Property Name="bolum_id" Type="Int32" />
+          <Property Name="gorev_id" Type="Int32" />
+          <Property Name="egitim_id" Type="Int32" />
+          <Property Name="bankahesapno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="baslamatarihi" Type="DateTime" Precision="3" />
+          <Property Name="tc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="resmibaslamatarihi" Type="DateTime" Precision="3" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="anaadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="babaadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serino" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dogumtarih" Type="DateTime" Precision="3" />
+          <Property Name="medenihali_id" Type="Int16" />
+          <Property Name="kangrubu_id" Type="Int16" />
+          <Property Name="cinsiyet_id" Type="Int16" />
+          <Property Name="elbisebeden" Type="Int32" />
+          <Property Name="cikistarihi" Type="DateTime" Precision="3" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cinsiyet" Relationship="gtc_stokModel.FK_personelgenel_cinsiyet" FromRole="personelgenel" ToRole="cinsiyet" />
+          <NavigationProperty Name="giriscikis" Relationship="gtc_stokModel.FK_giriscikis_personelgenel" FromRole="personelgenel" ToRole="giriscikis" />
+          <NavigationProperty Name="kangrup" Relationship="gtc_stokModel.FK_personelgenel_kangrup" FromRole="personelgenel" ToRole="kangrup" />
+          <NavigationProperty Name="medenihali" Relationship="gtc_stokModel.FK_personelgenel_medenihali" FromRole="personelgenel" ToRole="medenihali" />
+          <NavigationProperty Name="personel" Relationship="gtc_stokModel.FK_personel_personelgenel" FromRole="personelgenel" ToRole="personel" />
+          <NavigationProperty Name="personelbolum" Relationship="gtc_stokModel.FK_personelgenel_personelbolum1" FromRole="personelgenel" ToRole="personelbolum" />
+          <NavigationProperty Name="personelegitim" Relationship="gtc_stokModel.FK_personelgenel_personelegitim1" FromRole="personelgenel" ToRole="personelegitim" />
+          <NavigationProperty Name="personelgorev" Relationship="gtc_stokModel.FK_personelgenel_personelgorev1" FromRole="personelgenel" ToRole="personelgorev" />
+          <NavigationProperty Name="personelgrup" Relationship="gtc_stokModel.FK_personelgenel_personelgrup1" FromRole="personelgenel" ToRole="personelgrup" />
+          <NavigationProperty Name="personelsicaklik" Relationship="gtc_stokModel.FK_personelsicaklik_personelgenel" FromRole="personelgenel" ToRole="personelsicaklik" />
+        </EntityType>
+        <EntityType Name="personelgorev">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gorevadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_personelgorev1" FromRole="personelgorev" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="personelgrup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="grupadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelgenel_personelgrup1" FromRole="personelgrup" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="personelsicaklik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kisi_id" Type="Int32" />
+          <Property Name="sicaklik" Type="Double" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="personelgenel" Relationship="gtc_stokModel.FK_personelsicaklik_personelgenel" FromRole="personelsicaklik" ToRole="personelgenel" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="kul_id" Type="Int32" />
+          <Property Name="malzeme_id" Type="Int32" />
+          <Property Name="tur_id" Type="Int32" />
+          <Property Name="tedarik_id" Type="Int32" />
+          <Property Name="birim_id" Type="Int32" />
+          <Property Name="miktar" Type="Double" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="kalanmiktar" Type="Double" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_stok" FromRole="stok" ToRole="adminkontrol" />
+          <NavigationProperty Name="birim" Relationship="gtc_stokModel.FK_stok_birim" FromRole="stok" ToRole="birim" />
+          <NavigationProperty Name="login" Relationship="gtc_stokModel.FK_stok_login" FromRole="stok" ToRole="login" />
+          <NavigationProperty Name="malzemelist" Relationship="gtc_stokModel.FK_stok_malzemelist" FromRole="stok" ToRole="malzemelist" />
+          <NavigationProperty Name="tedarikci" Relationship="gtc_stokModel.FK_stok_tedarikci" FromRole="stok" ToRole="tedarikci" />
+          <NavigationProperty Name="tur" Relationship="gtc_stokModel.FK_stok_tur" FromRole="stok" ToRole="tur" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tedarikci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ilgilisi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_tedarikci" FromRole="tedarikci" ToRole="adminkontrol" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_stok_tedarikci" FromRole="tedarikci" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="tur">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="adminkontrol" Relationship="gtc_stokModel.FK_adminkontrol_tur" FromRole="tur" ToRole="adminkontrol" />
+          <NavigationProperty Name="stok" Relationship="gtc_stokModel.FK_stok_tur" FromRole="tur" ToRole="stok" />
+        </EntityType>
+        <EntityType Name="yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="login" Relationship="gtc_stokModel.FK_login_status" FromRole="yetki" ToRole="login" />
+        </EntityType>
+        <Association Name="FK_adminkontrol_birim">
+          <End Type="gtc_stokModel.birim" Role="birim" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="birim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_login">
+          <End Type="gtc_stokModel.login" Role="login" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_malzemelist">
+          <End Type="gtc_stokModel.malzemelist" Role="malzemelist" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="malzemelist">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="malzeme" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_stok">
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stok">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="stok_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_tedarikci">
+          <End Type="gtc_stokModel.tedarikci" Role="tedarikci" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="tedarik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_adminkontrol_tur">
+          <End Type="gtc_stokModel.tur" Role="tur" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.adminkontrol" Role="adminkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="adminkontrol">
+              <PropertyRef Name="tur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_birim">
+          <End Type="gtc_stokModel.birim" Role="birim" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="birim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_cinsiyet">
+          <End Type="gtc_stokModel.cinsiyet" Role="cinsiyet" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinsiyet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="cinsiyet_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_giriscikis_personelgenel">
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.giriscikis" Role="giriscikis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="giriscikis">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_login">
+          <End Type="gtc_stokModel.login" Role="login" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.guvenlikkontrol" Role="guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_misafir">
+          <End Type="gtc_stokModel.misafir" Role="misafir" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.guvenlikkontrol" Role="guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="misafir">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="misafir_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_guvenlikkontrol_personel">
+          <End Type="gtc_stokModel.personel" Role="personel" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.guvenlikkontrol" Role="guvenlikkontrol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="guvenlikkontrol">
+              <PropertyRef Name="personel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_kangrup">
+          <End Type="gtc_stokModel.kangrup" Role="kangrup" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kangrup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="kangrubu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_status">
+          <End Type="gtc_stokModel.yetki" Role="yetki" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.login" Role="login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yetki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="login">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_login">
+          <End Type="gtc_stokModel.login" Role="login" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="kul_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_malzemelist">
+          <End Type="gtc_stokModel.malzemelist" Role="malzemelist" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="malzemelist">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="malzeme_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_medenihali">
+          <End Type="gtc_stokModel.medenihali" Role="medenihali" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medenihali">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="medenihali_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personel_personelgenel">
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personel" Role="personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="personel">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelbolum1">
+          <End Type="gtc_stokModel.personelbolum" Role="personelbolum" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelbolum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="bolum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelegitim1">
+          <End Type="gtc_stokModel.personelegitim" Role="personelegitim" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelegitim">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="egitim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelgorev1">
+          <End Type="gtc_stokModel.personelgorev" Role="personelgorev" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgorev">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="gorev_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelgenel_personelgrup1">
+          <End Type="gtc_stokModel.personelgrup" Role="personelgrup" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgrup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="personelgenel">
+              <PropertyRef Name="grup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personelsicaklik_personelgenel">
+          <End Type="gtc_stokModel.personelgenel" Role="personelgenel" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.personelsicaklik" Role="personelsicaklik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personelgenel">
+              <PropertyRef Name="kart_no" />
+            </Principal>
+            <Dependent Role="personelsicaklik">
+              <PropertyRef Name="kisi_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_tedarikci">
+          <End Type="gtc_stokModel.tedarikci" Role="tedarikci" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tedarikci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="tedarik_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_tur">
+          <End Type="gtc_stokModel.tur" Role="tur" Multiplicity="0..1" />
+          <End Type="gtc_stokModel.stok" Role="stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tur">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="tur_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gtc_stokModelStoreContainer" CdmEntityContainer="gtc_stokEntities2">
+          <FunctionImportMapping FunctionImportName="stok_list" FunctionName="gtc_stokModel.Store.stok_list">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="gtc_stokModel.stok_list_Result">
+                <ScalarProperty Name="birim" ColumnName="birim" />
+                <ScalarProperty Name="malzeme" ColumnName="malzeme" />
+                <ScalarProperty Name="toplam" ColumnName="toplam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="adminkontrol">
+            <EntityTypeMapping TypeName="gtc_stokModel.adminkontrol">
+              <MappingFragment StoreEntitySet="adminkontrol">
+                <ScalarProperty Name="girilen" ColumnName="girilen" />
+                <ScalarProperty Name="harcanan" ColumnName="harcanan" />
+                <ScalarProperty Name="malzeme" ColumnName="malzeme" />
+                <ScalarProperty Name="birim" ColumnName="birim" />
+                <ScalarProperty Name="tedarik" ColumnName="tedarik" />
+                <ScalarProperty Name="tur" ColumnName="tur" />
+                <ScalarProperty Name="kayittarih" ColumnName="kayittarih" />
+                <ScalarProperty Name="kul_id" ColumnName="kul_id" />
+                <ScalarProperty Name="giren" ColumnName="giren" />
+                <ScalarProperty Name="stok_id" ColumnName="stok_id" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="birim">
+            <EntityTypeMapping TypeName="gtc_stokModel.birim">
+              <MappingFragment StoreEntitySet="birim">
+                <ScalarProperty Name="birim1" ColumnName="birim" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cinsiyet">
+            <EntityTypeMapping TypeName="gtc_stokModel.cinsiyet">
+              <MappingFragment StoreEntitySet="cinsiyet">
+                <ScalarProperty Name="cinsiyet_adi" ColumnName="cinsiyet_adi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="giriscikis">
+            <EntityTypeMapping TypeName="gtc_stokModel.giriscikis">
+              <MappingFragment StoreEntitySet="giriscikis">
+                <ScalarProperty Name="zaman" ColumnName="zaman" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="kisi_id" ColumnName="kisi_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="guvenlikkontrol">
+            <EntityTypeMapping TypeName="gtc_stokModel.guvenlikkontrol">
+              <MappingFragment StoreEntitySet="guvenlikkontrol">
+                <ScalarProperty Name="durum" ColumnName="durum" />
+                <ScalarProperty Name="misafir_id" ColumnName="misafir_id" />
+                <ScalarProperty Name="personel_id" ColumnName="personel_id" />
+                <ScalarProperty Name="kayittarih" ColumnName="kayittarih" />
+                <ScalarProperty Name="kul_id" ColumnName="kul_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kangrup">
+            <EntityTypeMapping TypeName="gtc_stokModel.kangrup">
+              <MappingFragment StoreEntitySet="kangrup">
+                <ScalarProperty Name="kan" ColumnName="kan" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login">
+            <EntityTypeMapping TypeName="gtc_stokModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="VCode" ColumnName="VCode" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="malzemelist">
+            <EntityTypeMapping TypeName="gtc_stokModel.malzemelist">
+              <MappingFragment StoreEntitySet="malzemelist">
+                <ScalarProperty Name="malzeme" ColumnName="malzeme" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="medenihali">
+            <EntityTypeMapping TypeName="gtc_stokModel.medenihali">
+              <MappingFragment StoreEntitySet="medenihali">
+                <ScalarProperty Name="medeni_hali" ColumnName="medeni_hali" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="misafir">
+            <EntityTypeMapping TypeName="gtc_stokModel.misafir">
+              <MappingFragment StoreEntitySet="misafir">
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="plaka" ColumnName="plaka" />
+                <ScalarProperty Name="sicaklik" ColumnName="sicaklik" />
+                <ScalarProperty Name="sebep" ColumnName="sebep" />
+                <ScalarProperty Name="cikissaat" ColumnName="cikissaat" />
+                <ScalarProperty Name="girissaat" ColumnName="girissaat" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="tc" ColumnName="tc" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personel">
+            <EntityTypeMapping TypeName="gtc_stokModel.personel">
+              <MappingFragment StoreEntitySet="personel">
+                <ScalarProperty Name="cikis_id" ColumnName="cikis_id" />
+                <ScalarProperty Name="giris_id" ColumnName="giris_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="sebep" ColumnName="sebep" />
+                <ScalarProperty Name="cikis" ColumnName="cikis" />
+                <ScalarProperty Name="giris" ColumnName="giris" />
+                <ScalarProperty Name="plaka" ColumnName="plaka" />
+                <ScalarProperty Name="kisi_id" ColumnName="kisi_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelbolum">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelbolum">
+              <MappingFragment StoreEntitySet="personelbolum">
+                <ScalarProperty Name="blmadi" ColumnName="blmadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelegitim">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelegitim">
+              <MappingFragment StoreEntitySet="personelegitim">
+                <ScalarProperty Name="egitimadi" ColumnName="egitimadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelgenel">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelgenel">
+              <MappingFragment StoreEntitySet="personelgenel">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="cikistarihi" ColumnName="cikistarihi" />
+                <ScalarProperty Name="elbisebeden" ColumnName="elbisebeden" />
+                <ScalarProperty Name="cinsiyet_id" ColumnName="cinsiyet_id" />
+                <ScalarProperty Name="kangrubu_id" ColumnName="kangrubu_id" />
+                <ScalarProperty Name="medenihali_id" ColumnName="medenihali_id" />
+                <ScalarProperty Name="dogumtarih" ColumnName="dogumtarih" />
+                <ScalarProperty Name="serino" ColumnName="serino" />
+                <ScalarProperty Name="babaadi" ColumnName="babaadi" />
+                <ScalarProperty Name="anaadi" ColumnName="anaadi" />
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="resmibaslamatarihi" ColumnName="resmibaslamatarihi" />
+                <ScalarProperty Name="tc" ColumnName="tc" />
+                <ScalarProperty Name="baslamatarihi" ColumnName="baslamatarihi" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="bankahesapno" ColumnName="bankahesapno" />
+                <ScalarProperty Name="egitim_id" ColumnName="egitim_id" />
+                <ScalarProperty Name="gorev_id" ColumnName="gorev_id" />
+                <ScalarProperty Name="bolum_id" ColumnName="bolum_id" />
+                <ScalarProperty Name="grup_id" ColumnName="grup_id" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="kart_no" ColumnName="kart_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelgorev">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelgorev">
+              <MappingFragment StoreEntitySet="personelgorev">
+                <ScalarProperty Name="gorevadi" ColumnName="gorevadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelgrup">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelgrup">
+              <MappingFragment StoreEntitySet="personelgrup">
+                <ScalarProperty Name="grupadi" ColumnName="grupadi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personelsicaklik">
+            <EntityTypeMapping TypeName="gtc_stokModel.personelsicaklik">
+              <MappingFragment StoreEntitySet="personelsicaklik">
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="sicaklik" ColumnName="sicaklik" />
+                <ScalarProperty Name="kisi_id" ColumnName="kisi_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stok">
+            <EntityTypeMapping TypeName="gtc_stokModel.stok">
+              <MappingFragment StoreEntitySet="stok">
+                <ScalarProperty Name="kalanmiktar" ColumnName="kalanmiktar" />
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+                <ScalarProperty Name="tedarik_id" ColumnName="tedarik_id" />
+                <ScalarProperty Name="tur_id" ColumnName="tur_id" />
+                <ScalarProperty Name="malzeme_id" ColumnName="malzeme_id" />
+                <ScalarProperty Name="kul_id" ColumnName="kul_id" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="gtc_stokModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tedarikci">
+            <EntityTypeMapping TypeName="gtc_stokModel.tedarikci">
+              <MappingFragment StoreEntitySet="tedarikci">
+                <ScalarProperty Name="ilgilisi" ColumnName="ilgilisi" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="firma" ColumnName="firma" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tur">
+            <EntityTypeMapping TypeName="gtc_stokModel.tur">
+              <MappingFragment StoreEntitySet="tur">
+                <ScalarProperty Name="turu" ColumnName="turu" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yetki">
+            <EntityTypeMapping TypeName="gtc_stokModel.yetki">
+              <MappingFragment StoreEntitySet="yetki">
+                <ScalarProperty Name="stat" ColumnName="stat" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

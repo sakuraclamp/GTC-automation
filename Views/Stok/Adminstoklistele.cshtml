@@ -1,0 +1,302 @@
+﻿@model IEnumerable<test.Models.adminkontrol>
+
+@{
+    if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+@using (Html.BeginForm("LogExcel", "stok", FormMethod.Post))
+{
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Zaman Aralığı Seçin:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label>Başlangıç:&nbsp; </label>
+                    </div>
+                    <input type="date" name="start" class="form-control datepicker" value="@ViewBag.d2" />
+                    <label>&nbsp;Bitiş:&nbsp; </label>
+                    <input type="date" name="end" class="form-control datepicker" value="@ViewBag.d1" />
+                    &nbsp; &nbsp; <input type="submit" value="Excel" class="btn btn-primary btn-sm fa-download" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}
+<title>Admin Stok listesi</title>
+<hr />
+
+<div class="card-body p-0">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 4%">
+                    No
+                </th>
+                <th style="width: 6%">
+                    Stok No
+                </th>
+                <th style="width: 8%">
+                    Tarih
+                </th>
+                <th style="width: 10%">
+                    Kullanıcı
+                </th>
+                <th style="width: 16%">
+                    Tedarikçi Firma
+                </th>
+                <th style="width: 8%">
+                    Türü
+                </th>
+                <th style="width: 8%">
+                    Malzeme
+                </th>
+                <th style="width: 8%">
+                    Miktar
+                </th>
+                <th style="width: 8%">
+                    Durum
+                </th>
+                <th style="width: 6%; text-align:center">
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (item.giren == 1)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stok_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kayittarih)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.login.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tedarikci.firma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tur1.turu)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.malzemelist.malzeme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.miktar)
+                            @Html.DisplayFor(modelItem => item.birim1.birim1)
+                        </td>
+
+                        <td class="project_progress">
+                            Ürün Girildi
+                        </td>
+                        @{
+                            if ((string)Session["statusname"] == "Admin")
+                            {
+                                <td class="project-actions text-center">
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Stokdetail", new { id = item.id })">
+                                        <i class="fas fa-search">
+                                        </i>
+                                        Detay
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                Url.Action("Index", "Login");
+                            }
+                        }
+                    </tr>
+                }
+                else if (item.giren == 2)
+                {
+                    <tr style="color:yellowgreen">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stok_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kayittarih)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.login.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tedarikci.firma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tur1.turu)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.malzemelist.malzeme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.miktar)
+                            @Html.DisplayFor(modelItem => item.birim1.birim1)
+                        </td>
+
+                        <td class="project_progress">
+                            Güncelledi
+                        </td>
+                        @{
+                            if ((int)Session["status"] == 0)
+                            {
+                                <td class="project-actions text-center">
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Stokdetail", new { id = item.id })">
+                                        <i class="fas fa-search">
+                                        </i>
+                                        Detay
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                Url.Action("Index", "Login");
+                            }
+                        }
+                    </tr>
+                }
+                else if (item.giren == 0)
+                {
+                    <tr style="color:cornflowerblue">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stok_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kayittarih)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.login.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tedarikci.firma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tur1.turu)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.malzemelist.malzeme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.miktar)
+                            @Html.DisplayFor(modelItem => item.birim1.birim1)
+                        </td>
+
+                        <td class="project_progress">
+                            Ürün Kaldı
+                        </td>
+                        @{
+                            if ((int)Session["status"] == 0)
+                            {
+                                <td class="project-actions text-center">
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Stokdetail", new { id = item.id })">
+                                        <i class="fas fa-search">
+                                        </i>
+                                        Detay
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                Url.Action("Index", "Login");
+                            }
+                        }
+                    </tr>
+                }
+                else 
+                {
+                    <tr style="color:orangered">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.stok_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kayittarih)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.login.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tedarikci.firma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tur1.turu)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.malzemelist.malzeme)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.miktar)
+                            @Html.DisplayFor(modelItem => item.birim1.birim1)
+                        </td>
+
+                        <td class="project_progress">
+                            Ürün Silindi
+                        </td>
+                        @{
+                            if ((int)Session["status"] == 0)
+                            {
+                                <td class="project-actions text-center">
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Stokdetail", new { id = item.id })">
+                                        <i class="fas fa-search">
+                                        </i>
+                                        Detay
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                Url.Action("Index", "Login");
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(function () {
+        $("#dtBasicExample").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+            "order": [[0, "desc"]]
+        });
+        //Date range picker
+        $('#reservationdate').datetimepicker({
+            format: 'L'
+        });
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        })
+    });
+</script>

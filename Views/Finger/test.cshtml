@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+
+<!-- Date -->
+<div class="form-group">
+    <label>Date:</label>
+    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+        <input type="text" value="@DateTime.Now.ToString("MM-dd-yyyy")" class="form-control datetimepicker-input" data-target="#reservationdate">
+        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+    </div>
+</div>    
+<div class="form-group">
+    <label>Date:</label>
+    <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+        <input type="text"value="@DateTime.Now.ToString("MM/dd/yyyy")" class="form-control datetimepicker-input" data-target="#reservationdate1">
+        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Page script -->
+<script>
+
+    $(function () {
+
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        //Date range picker
+        $('#reservationdate').datetimepicker({
+            format: 'L',
+
+        });
+        $('#reservationdate1').datetimepicker({
+            format: 'L'
+        });
+        //Date range picker
+
+
+
+
+    })
+</script>
+
+

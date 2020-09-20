@@ -1,0 +1,70 @@
+﻿@model test.Models.tedarikci
+
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+
+    }
+    else if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+    ViewBag.Title = "Sil";
+}
+<title>Tedarik Sil</title>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">Silmek istediğinizden emin misiniz?</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form role="form">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Tedarikçi Firma Adı:</label>
+                                        <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.firma)" disabled="disabled">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Adres:</label>
+                                        <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.adres)" disabled="disabled">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Telefon:</label>
+                                        <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.telefon)" disabled="disabled">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>İlgili Kişi:</label>
+                                        <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.ilgilisi)" disabled="disabled">
+                                    </div>
+                                    <div class=" float-right">
+                                        <a href="~/Admin/Tedarikcilistesi" class="btn btn-app">
+                                            <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+                                        </a>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 ">
+                                            <input type="submit" value="Sil" class="btn btn-info " />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}

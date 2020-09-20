@@ -1,0 +1,94 @@
+﻿@model IEnumerable<test.Models.personelsicaklik>
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+<table class="table table-bordered text-center" style="width: 20%">
+    <tbody>
+        <tr>
+            <th>
+                @using (Html.BeginForm("Aylik", "Guvenlik", FormMethod.Post))
+                {
+                    @Html.DropDownList("ay", null, new { onchange = @"submit();" })
+                    @Html.DropDownList("yil", null, new { onchange = @"submit();" })
+                }
+            </th>
+            @using (Html.BeginForm("AylikExcel", "Guvenlik", FormMethod.Post))
+            {
+                <th>
+                    @Html.DropDownList("ay", null, new { @style = "visibility:hidden;width:5px;height:5px" })
+                    @Html.DropDownList("yil", null, new { @style = "visibility:hidden;width:5px;height:5px" })
+                    <button type="submit" class="btn  btn-primary">Excel</button>
+                </th>
+            }
+        </tr>
+    </tbody>
+</table>
+
+<hr />
+<style>
+    table, td, th {
+        border: 1px solid black;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        height: 50px;
+    }
+</style>
+<div class="" style="background-color:white">
+    <table class="">
+        <thead class="" style="font-size:18px">
+            <tr>
+                <th>Kart ID</th>
+                <th>Adı Soyadı</th>
+                @for (int i = 1; i <= ViewBag.day; i++)
+                {
+                    int day2 = (int)ViewBag.mydate.AddDays(i).DayOfWeek;
+                    if (day2 == 0 || day2 == 1)
+                    {
+                        <th scope="col" style="background-color:red;width:25px">@i</th>
+                    }
+                    else
+                    {
+                        <th scope="col" style="width:25px">@i</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int j = 0;
+            }
+            @foreach (var item in ViewBag.kisiler)
+            {
+                j++;
+                <tr style="height:20px">
+                    <td  style="border-bottom:2px solid;width:50px">@item.kart_no</td>
+                    <td  style="border-bottom:2px solid;width:17%">@item.ad @item.soyad</td>
+                    @for (int i = 1; i <= ViewBag.day; i++)
+                    {
+                        if (ViewBag.giris[j, i] == null)
+                        {
+                            <td align="center" style="background-color:red"></td>
+                        }
+                        else
+                        {
+                            <td align="center" style="width:10px;font-size:14px">@ViewBag.giris[j, i]</td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

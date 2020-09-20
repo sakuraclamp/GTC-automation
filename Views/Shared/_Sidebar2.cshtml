@@ -1,0 +1,123 @@
+﻿<aside class="main-sidebar sidebar-dark-cyan elevation-4" style="font-size:14px">
+    <!-- Brand Logo -->
+    <div class="brand-link">
+        <img src="~/Content/Admin/dist/img/adminlogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <a href="~/AdminControl"><span class="brand-text font-weight-light"><font size="4" style="color:aqua;"><b>Admin Panel</b></font></span></a>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                @{
+                    if (Session["status"] != null)
+                    {
+                        if ((int)Session["status"] == 0)
+                        {
+                            <img src="~/Content/Admin/dist/img/avatar04.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                        else if ((int)Session["status"] == 2)
+                        {
+                            <img src="~/Content/Admin/dist/img/user_1.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Admin/dist/img/user_2.png" class="img-circle elevation-2" alt="User Image">
+                        }
+                    }
+                }
+            </div>
+            <div class="info">
+                <div class="d-block"><font color="white" size="4">Hoşgeldin &nbsp;</font><a href="~/AdminControl"><font color="aqua" size="4">  @Session["username"]</font></a></div>
+            </div>
+        </div>
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa fa-cubes"></i>
+                        <p>
+                            Kayıtlar
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        @{
+                            if ((string)Session["username"] == "admin")
+                            {
+                                <li class="nav-item ">
+                                    <a href="~/Stok/Adminstoklistele" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Adminstoklistele" ? "active" : "")">
+                                        <i class="fas fa-stream nav-icon"></i>
+                                        <p>Stok Log Kayıtları</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a href="~/AdminControl/Guvenliklog" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Guvenliklog" ? "active" : "")">
+                                        <i class="far fa fa-list-ul nav-icon"></i>
+                                        <p>Güvenlik Log Kayıtları</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </li>
+
+
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa fa-user"></i>
+                        <p>
+                            Kullanıcı
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @{
+                            if ((string)Session["username"] == "admin")
+                            {
+                                <li class="nav-item">
+                                    <a href="~/Admin/KisiEkle" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "KisiEkle" ? "active" : "")">
+                                        <i class="far fa fa-user-plus nav-icon"></i>
+                                        <p>Kullanıcı Ekle</p>
+                                    </a>
+                                </li>
+                           
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Rolekle", "AdminControl")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Rolekle" ? "active" : "")">
+                                        <i class="fas fa-chalkboard-teacher nav-icon"></i>
+                                        <p>Rol Ekle</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Kisilistele", "AdminControl")" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Kisilistele" ? "active" : "")">
+                                        <i class="far fa fa-list-alt nav-icon "></i>
+                                        <p>Kullanıcı Listele</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        <li class="nav-item">
+                            <a href="@Url.Action("profil", "AdminControl",new {name=Session["username"]})" class="nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "profil" ? "active" : "")">
+                                <i class="far fa fa-cogs nav-icon"></i>
+                                <p>Kullanıcı Ayarı</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Logout", "Login")" class="nav-link">
+                        <i class="far fa fa-sign-out nav-icon"></i>
+                        <p><font color="red"><b>Çıkış</b> </font></p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

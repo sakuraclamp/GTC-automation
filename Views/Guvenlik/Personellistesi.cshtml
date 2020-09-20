@@ -1,0 +1,120 @@
+﻿@model IEnumerable<test.Models.personel>
+@{
+    if (Session["statusname"] == null)
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+}
+
+<title>Personel listesi</title>
+@using (Html.BeginForm())
+{
+    <input type="date" onchange = "form.submit()" name="date" value="@ViewBag.now7"/>
+}
+<hr />
+<div class="card-body p-0" style="font-size:14px">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Kullanıcı
+                </th>
+                <th>
+                    Personel Adı
+                </th>
+                <th>
+                    Plaka
+                </th>
+                <th>
+                    Giriş
+                </th>
+                <th style="width:180px">
+                    Çıkış
+                </th>
+                <th>
+                    Ziyaret Sebebi
+                </th>
+                <th>
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model.Count()>0)
+            {
+            foreach (var item in Model)
+            {
+                if (item.isdisable == 0)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.personelgenel.ad)  @Html.DisplayFor(modelItem => item.personelgenel.soyad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.plaka)
+                        </td>
+                        <td>
+                            @Convert.ToDateTime(item.giris).ToString("dd-MMM-yyyy HH:mm")
+                        </td>
+                        @{
+                            if (item.cikis == null)
+                            {
+                                <td>
+                                    @*<input type="datetime-local" name="cikis" class="form-control form-control-sm" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ','T')" />*@
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    @Convert.ToDateTime(item.cikis).ToString("dd-MMM-yyyy HH:mm")
+                                </td>
+                            }
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sebep)
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" style="font-size:12px" href="@Url.Action("Personelsil",  new { id = item.id })">
+                                <i class="fas fa-trash"> </i>
+                                Sil
+                            </a>
+                            @{
+                                if (item.cikis == null)
+                                {
+                                    <a class="btn btn-warning btn-sm" style="font-size:12px" href="@Url.Action("Personelcikis" , new { item.id})">
+                                        <i class="fas fa-step-forward"></i>
+                                        Çıkış Yap
+                                    </a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+           }
+        </tbody>
+    </table>
+
+</div>
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            "order": [[0, "desc"]]
+        });
+    });
+</script>

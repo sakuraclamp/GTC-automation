@@ -1,0 +1,71 @@
+﻿@model IEnumerable<test.Models.login>
+
+@{
+    if (Session["UserId"] == null)
+    {
+
+        Response.Redirect("~/Login");
+
+    }
+    else if ((int)Session["status"] == 1)
+    {
+        Response.Redirect("~/Admin");
+    }
+    ViewBag.Title = "Kullanıcı Listesi";
+}
+<title>Kullanıcı listesi</title>
+
+<div class="card-body p-0">
+<table id="dtBasicExample" class="table table-striped projects">
+    <thead>
+        <tr>
+            <th style="width: 20%">
+                Kullanıcı Adı
+            </th>
+            <th style="width: 20%">
+                Yetki
+            </th>
+            <th style="width: 20%">
+                Adı
+            </th>
+            <th style="width: 20%">
+                Soyadı
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (Convert.ToInt32(item.status) != 0)
+            {
+                @Html.Hidden("Id")
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.yetki.stat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ad)
+                    </td>
+                    <td class="project_progress">
+                        @Html.DisplayFor(modelItem => item.soyad)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+    
+</div>
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>

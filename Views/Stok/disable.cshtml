@@ -1,0 +1,99 @@
+﻿@model test.Models.stok
+
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+
+    }
+}
+<title>Stok Çıkar</title>
+<div>
+    <h4>Stok Çıkar</h4>
+    <hr />
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+<section class="content">
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Çıkarmak istediğinizden emin misiniz?</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form">
+                              
+                    <div class="card-body">
+                        @Html.HiddenFor(model => model.id)
+                        @Html.HiddenFor(model => model.kul_id)
+                        @Html.HiddenFor(model => model.birim_id)
+                        @Html.HiddenFor(model => model.malzeme_id)
+                        @Html.HiddenFor(model => model.tedarik_id)
+                        @Html.HiddenFor(model => model.miktar)
+                        @Html.HiddenFor(model => model.tur_id)
+                        @Html.HiddenFor(model => model.login)
+                        @Html.HiddenFor(model => model.birim)
+                        @Html.HiddenFor(model => model.malzemelist)
+                        @Html.HiddenFor(model => model.tedarikci)
+                        @Html.HiddenFor(model => model.tur)
+                        @Html.HiddenFor(model => model.tarih)
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label>Kullanıcı Adı:</label>
+                                <input type="text" class="form-control" placeholder=" @Html.DisplayFor(model => model.login.name)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Tedarikçi Firma:</label>
+                                <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.tedarikci.firma)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Malzeme:</label>
+                                <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.malzemelist.malzeme)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Türü:</label>
+                                <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.tur.turu)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Birim:</label>
+                                <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.birim.birim1)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label>Miktar:</label>
+                                <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.kalanmiktar)" disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label class="">Çıkarılan Ürün Miktarını Girin:</label>
+                                @Html.EditorFor(model => model.kalanmiktar, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.miktar, "", new { @class = "text-danger" })
+                            </div>                                   
+                            <div class="">
+                                <label class="text-da text-danger">@ViewBag.fazlalik</label>
+                            </div>
+
+                            <div class=" float-right">
+                                <a href="~/Stok/Stoklistele" class="btn btn-app">
+                                    <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+                                </a>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 ">
+                                    <input type="submit" value="Çıkar" class="btn btn-danger " />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+}
+</div>

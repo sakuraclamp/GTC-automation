@@ -1,0 +1,102 @@
+﻿@model IEnumerable<test.Models.giriscikis>
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<title>Giriş Çıkış Saatleri</title>
+<hr />
+
+<div class="card-body p-0" style="font-size:14px">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 6%">
+                    Kart ID
+                </th>
+
+                <th style="width: 9%">
+                    Adı
+                </th>
+                <th style="width: 10%">
+                    Soyadı
+                </th>
+                <th style="width: 10%">
+                    Tarih
+                </th>
+                <th style="width: 10%">
+                    Giriş Saati
+                </th>
+                <th style="width: 10%">
+                    İşlem
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kisi_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personelgenel.ad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personelgenel.soyad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tarih)
+                </td>
+                @{
+                    if (item.value % 2 == 0)
+                    {
+                        <td style="color:cadetblue">
+                            @Html.DisplayFor(modelItem => item.zaman)
+                            <label>Giriş Yaptı</label>
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="color:red">
+                            @Html.DisplayFor(modelItem => item.zaman)
+                            <label>Çıkış Yaptı</label>
+                        </td>
+                    }
+                }
+            <td style="font-size:14px">
+                <a class="btn  btn-sm btn-primary" href="@Url.Action("Degistir", new { id = item.id })">
+                    <i class="fas fa-retweet"></i>
+                    Değiştir
+                </a>
+                <a  class="btn  btn-sm btn-success" href="@Url.Action("Goster", new { id = item.kisi_id })">
+
+                    <i class="fas fa-chevron-circle-right"></i>
+                    Kişiye Git
+                </a>
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            },
+            "order": false,
+            "pageLength": 25
+        });
+    });
+</script>

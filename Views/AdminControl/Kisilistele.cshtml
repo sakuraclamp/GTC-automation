@@ -1,0 +1,99 @@
+﻿@model IEnumerable<test.Models.login>
+@{
+    if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<title>Kullanıcı listesi</title>
+<h4>Kullanıcı Listesi</h4>
+<hr />
+<div class="card-body p-0">
+    <table id="dtBasicExample" class="table table-striped projects">
+        <thead>
+            <tr>
+                <th style="width: 20%">
+                    Kullanıcı Adı
+                </th>
+                <th style="width: 20%">
+                    Yetki
+                </th>
+                <th style="width: 20%">
+                    Adı
+                </th>
+                <th style="width: 20%">
+                    Soyadı
+                </th>
+                @{
+                    if ((string)Session["statusname"] == "Admin")
+                    {
+                        <th style="width: 20%">
+                            İşlem
+                        </th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (Convert.ToInt32(item.status) != 0)
+                {
+                    @Html.Hidden("Id")
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.yetki.stat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ad)
+                        </td>
+                        <td class="project_progress">
+                            @Html.DisplayFor(modelItem => item.soyad)
+                        </td>
+                        @{
+                            if ((string)Session["username"] == "admin")
+                            {
+                                <td class="project-actions text-right" style="padding-right:6.5rem">
+                                    <a class="btn btn-primary btn-sm" href="@Url.Action("Detail", "Admin",new { id = item.id })">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Göster
+                                    </a>
+                                    <a class="btn btn-info btn-sm" href="@Url.Action("Edit", "Admin", new { id = item.id })">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Düzenle
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Admin", new { id = item.id })">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Sil
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                Url.Action("Index", "Login");
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+<link href="~/Content/Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>

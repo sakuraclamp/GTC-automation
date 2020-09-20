@@ -1,0 +1,127 @@
+﻿@model test.Models.personelgenel
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<title>Personel Ekle</title>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal" style="font-size:14px">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                Personel Ekle
+                                <h3 class="card-title"></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form role="form">
+                                <div class="card-body">
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Kart ID:</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(Model => Model.kart_no, new { @class = "form-control form-control-sm" })
+                                            @Html.ValidationMessageFor(model => model.kart_no, "", new { @class = "text-danger" })
+                                            <text style="color:red;font-size:14px">@ViewBag.hata</text>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Adı:</label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.ad, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Soyadı:</label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.soyad, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Grup:</label>
+                                        <div class="col-sm-8">
+                                            @Html.DropDownList("grup_id", (IEnumerable<SelectListItem>)ViewBag.grup_id, new { @class = "form-control select2 form-control-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Bölüm:</label>
+                                        <div class="col-sm-8">
+                                            @Html.DropDownList("bolum_id", (IEnumerable<SelectListItem>)ViewBag.bolum_id, new { @class = "form-control select2 form-control-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Görev:</label>
+                                        <div class="col-sm-8">
+                                            @Html.DropDownList("gorev_id", (IEnumerable<SelectListItem>)ViewBag.gorev_id, new { @class = "form-control select2 form-control-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Eğitim:</label>
+                                        <div class="col-sm-8">
+                                            @Html.DropDownList("egitim_id", (IEnumerable<SelectListItem>)ViewBag.egitim_id, new { @class = "form-control select2 form-control-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">Hesap No:</label>
+                                        <div class="col-sm-8">
+                                            @Html.EditorFor(model => model.bankahesapno, new { htmlAttributes = new { @class = "form-control form-control-sm" } })
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm">
+                                        <label class="col-sm-4 col-form-label">İşe Başlama Tarihi:</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.baslamatarihi, DateTime.Now.Date.ToString("{0:yyyy-MM-dd}"), new { type = "date", @class = "form-control select2 form-control-sm" })
+
+                                        </div>
+                                    </div>
+                                    <div class="input-group ">
+                                        <label class="col-sm-4 col-form-label">Resmi İşe Başlama:</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.resmibaslamatarihi, DateTime.Now.Date.ToString("{0:yyyy-MM-dd}"), new { type = "date", @class = "form-control select2 form-control-sm" })
+
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="input-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Kaydet" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+    </div>
+}
+
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+
+    })
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

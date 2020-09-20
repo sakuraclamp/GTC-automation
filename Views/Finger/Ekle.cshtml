@@ -1,0 +1,101 @@
+﻿@model test.Models.personelgenel
+@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}<title>Ekle</title>
+@using (Html.BeginForm())
+{
+<div class="card card-default col-md-9">
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-md-4">
+                <!-- general form elements -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        Bölüm Ekle
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-8 col-form-label">Bölüm Adı</label>
+                            <div class="col-sm-12">
+                                @Html.EditorFor(model => model.personelbolum.blmadi, new { htmlAttributes = new { @class = "form-control " } })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <div class="col-md-4">
+                <!-- general form elements -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        Görev Ekle
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-8 col-form-label">Görev Adı</label>
+                            <div class="col-sm-12">
+                                @Html.EditorFor(model => model.personelgorev.gorevadi, new { htmlAttributes = new { @class = "form-control " } })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <div class="col-md-4">
+                <!-- general form elements -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        Grup Ekle
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-8 col-form-label">Grup Adı</label>
+                            <div class="col-sm-12">
+                                @Html.EditorFor(model => model.personelgrup.grupadi, new { htmlAttributes = new { @class = "form-control " } })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+}
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2();
+        $('#phone').mask("0(999)999-99-99")
+    })
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

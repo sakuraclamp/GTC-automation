@@ -1,0 +1,86 @@
+﻿@model test.Models.adminkontrol
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+
+    }
+    else if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+}
+<title>Stok Log Detayı</title>
+<h4>Stok Log Detayı</h4>
+<hr />
+<div class="card" style="width: 50%">
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td><b>Id</b></td>
+                <td>@Html.DisplayFor(model => model.id)</td>
+            </tr>
+            <tr>
+                <td><b>Stok Id</b></td>
+                <td>@Html.DisplayFor(model => model.stok_id)</td>
+            </tr>
+            <tr>
+                <td><b>Güncelleme Tarihi</b></td>
+                <td>@Html.DisplayFor(model => model.kayittarih)</td>
+            </tr>
+            <tr>
+                <td><b>Ürün Tarihi</b></td>
+                <td>@Html.DisplayFor(model => model.stok.tarih)</td>
+            </tr>
+            <tr>
+                <td><b>Kullanıcı</b></td>
+                <td>@Html.DisplayFor(model => model.login.name)</td>
+            </tr>
+            <tr>
+                <td><b>Tedarikçi Firma</b></td>
+                <td>@Html.DisplayFor(model => model.stok.tedarikci.firma)</td>
+            </tr>
+            <tr>
+                <td><b>Türü</b></td>
+                <td>@Html.DisplayFor(model => model.stok.tur.turu)</td>
+            </tr>
+            <tr>
+                <td><b>Birimi</b></td>
+                <td>@Html.DisplayFor(model => model.stok.birim.birim1)</td>
+            </tr>
+            <tr>
+                <td><b>Malzeme</b></td>
+                <td>@Html.DisplayFor(model => model.stok.malzemelist.malzeme)</td>
+            </tr>
+            <tr>
+                <td><b>Miktar</b></td>
+                <td>@Html.DisplayFor(model => model.miktar)</td>
+            </tr>
+            <tr>
+                <td><b>Durum</b></td>
+                <td>
+                    @{
+                        if (Model.giren == 1)
+                        {
+                            <text>Girilen</text>
+                        }
+                        else
+                        {
+                            <text>Kalan</text>
+                        }
+                    } ürün
+                </td>
+            </tr>
+        </tbody>
+        </table>
+        <br />
+        <div class=" float-right">
+            <a href="~/Stok/Adminstoklistele" class="btn btn-app">
+                <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+            </a>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>

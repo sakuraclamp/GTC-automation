@@ -1,0 +1,70 @@
+﻿@{
+    if ((string)Session["statusname"] != "Admin")
+    {
+        if ((string)Session["statusname"] != "Master")
+        {
+            Response.Redirect("~/Login");
+        }
+    }
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div class="row">
+    <!--<div class="col-lg-3 col-6">-->
+        <!-- small box -->
+        <!--<div class="small-box bg-info">
+            <div class="inner">
+                <h3>@ViewBag.stoktaki</h3>
+                <p>Stoktaki Ürünler</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-bag"></i>
+            </div>
+            <a href="@Url.Action("Stoklistele", "Stok")" class="small-box-footer">Daha fazla bilgi<i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>-->
+    <!-- ./col -->
+    <!--<div class="col-lg-3 col-6">-->
+        <!-- small box -->
+        <!--<div class="small-box bg-success">
+            <div class="inner">
+                <h3>@ViewBag.firmalar </h3>
+                <p>Tedarikçi Firmalar</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="@Url.Action("Tedarikcilistesi", "Admin")" class="small-box-footer">Daha fazla bilgi<i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>-->
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>
+                    <font color="White">@ViewBag.kisiler</font>
+                </h3>
+                <p>Personel Sayısı</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="@Url.Action("Personellistele", "Finger")" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <!--<div class="col-lg-3 col-6">-->
+        <!-- small box -->
+        <!--<div class="small-box bg-danger">
+            <div class="inner">
+                <h3>@ViewBag.malzemeler</h3>
+                <p>Malzemeler</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="@Url.Action("Malzemelistesi", "Admin")" class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>-->
+    <!-- ./col -->
+</div>

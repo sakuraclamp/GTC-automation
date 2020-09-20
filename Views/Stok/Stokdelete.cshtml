@@ -1,0 +1,79 @@
+﻿@model test.Models.stok
+
+@{
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login");
+
+    }
+    else if ((string)Session["username"] != "admin")
+    {
+        Response.Redirect("~/Login");
+    }
+}
+<title>Stok Sil</title>
+<div>
+    <h4>Stok Sil</h4>
+    <hr />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Silmek istediğinizden emin misiniz?</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>Kullanıcı Adı:</label>
+                                    <input type="text" class="form-control" placeholder=" @Html.DisplayNameFor(model => model.tarih)" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <label>Kullanıcı Adı:</label>
+                                    <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.tedarikci.firma)" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <label>Malzeme:</label>
+                                    <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.malzemelist.malzeme)" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <label>Türü:</label>
+                                    <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.tur.turu)" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <label>Birim:</label>
+                                    <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.birim.birim1)" disabled="disabled">
+                                </div>
+                                <div class="form-group">
+                                    <label>Miktar:</label>
+                                    <input type="text" class="form-control" placeholder="@Html.DisplayFor(model => model.miktar)" disabled="disabled">
+                                </div>
+                                <div class=" float-right">
+                                    <a href="~/Stok/Adminstoklistele" class="btn btn-app">
+                                        <i class="fas fa fa-backward"></i><b>Geri Dön</b>
+                                    </a>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 ">
+                                        <input type="submit" value="Sil" class="btn btn-danger " />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    }
+</div>
